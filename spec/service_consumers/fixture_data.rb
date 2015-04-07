@@ -110,8 +110,7 @@ module FixtureData
       :id          => '87b65bf6-9cd8-4247-bd7d-70fcbe233b46',
       :service_key => 'abc',
       :subdomain   => 'def',
-      :username    => 'ghi',
-      :password    => 'jkl',
+      :apikey      => 'ghi',
     }
   end
 
@@ -120,8 +119,7 @@ module FixtureData
       :id          => 'cfd55e24-f572-42ae-a0eb-5f86bc8e900f',
       :service_key => 'mno',
       :subdomain   => 'pqr',
-      :username    => 'stu',
-      :password    => 'vwx',
+      :apikey      => 'ghi',
     }
   end
 

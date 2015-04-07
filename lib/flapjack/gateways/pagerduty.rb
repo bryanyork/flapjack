@@ -168,8 +168,7 @@ module Flapjack
 
           if credentials = @config['credentials']
             @subdomain = credentials['subdomain']
-            @username  = credentials['username']
-            @password  = credentials['password']
+            @apikey    = credentials['apikey']
           end
 
           # TODO: only clear this if there isn't another pagerduty gateway instance running
@@ -269,10 +268,10 @@ module Flapjack
         
         # returns the pagerduty acknowledgements
         def pagerduty_acknowledgements
-          if @username.blank? || @password.blank?
+          if @apikey.blank?
             Flapjack.logger.warn("pagerduty_acknowledgements?: Unable to look for acknowledgements on pagerduty" +
                          " as all of the following options are required:" +
-                         " username (#{@username}), password (#{@password})")
+                         " apikey (#{@apikey})")
             return nil
           end
 
@@ -291,11 +290,11 @@ module Flapjack
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           request = Net::HTTP::Get.new(uri.request_uri)
-          request.basic_auth(@username, @password)
+	  request['authorization'] = "Token token=#{@apikey}"
 
           Flapjack.logger.debug("pagerduty_acknowledgements: request to #{uri.request_uri}")
           Flapjack.logger.debug("pagerduty_acknowledgements: query: #{query.inspect}")
-          Flapjack.logger.debug("pagerduty_acknowledgements: auth: #{@username}, #{@password}")
+          Flapjack.logger.debug("pagerduty_acknowledgements: auth: #{@apikey}")
 
           http_response = http.request(request)
 

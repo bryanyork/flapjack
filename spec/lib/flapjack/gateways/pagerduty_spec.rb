@@ -7,8 +7,7 @@ describe Flapjack::Gateways::Pagerduty, :logger => true do
   let(:config) { {
     'queue'       => 'pagerduty_notifications',
     'credentials' => {'subdomain' => 'flpjck',
-                      'username' => 'flapjack',
-                      'password' => 'password123'}
+                      'apikey' => '1234567890'}
   } }
 
   let(:now)   { Time.new }
@@ -158,8 +157,7 @@ describe Flapjack::Gateways::Pagerduty, :logger => true do
         and_return(check => [{
         'service_key' => '12345678',
         'subdomain"'  => 'flpjck',
-        'username'    => 'flapjack',
-        'password'    => 'password123'
+	'apikey'      => '1234567890'
       }])
 
       expect(Flapjack::Data::Event).to receive(:create_acknowledgements).with('events',
@@ -211,7 +209,7 @@ describe Flapjack::Gateways::Pagerduty, :logger => true do
 
   it "does not look for acknowledgements if all required credentials are not present" # do
   #   creds = {'subdomain' => 'example',
-  #            'username'  => 'sausage',
+  #            'apikey'  => 'sausage',
   #            'check'     => 'PING'}
 
   #   expect(Flapjack::RedisPool).to receive(:new).and_return(redis)

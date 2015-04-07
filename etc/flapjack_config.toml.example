@@ -155,8 +155,7 @@ daemonize = true
     [gateways.pagerduty.credentials]
       service_key = "1234567890"
       subdomain = thecompany
-      username = user
-      password = pass
+      apikey = "1234567890"
     [gateways.pagerduty.logger]
       level = "INFO"
       syslog_errors = true

@@ -412,8 +412,7 @@ module Flapjack
               {
                 'service_key' => medium.address,
                 'subdomain'   => ud['subdomain'],
-                'username'    => ud['username'],
-                'password'    => ud['password'],
+		'apikey'      => ud['apikey'],
               }
             end
           end
